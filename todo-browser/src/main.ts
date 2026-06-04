@@ -1,48 +1,18 @@
-const app = document.querySelector("#app");
+import "./style.css";
 
-if (app) {
-  app.innerHTML = `
-    <h1>TODOアプリ</h1>
+const clock = document.querySelector<HTMLDivElement>("#clock");
 
-    <input id="todo-input" placeholder="TODOを入力" />
-    <button id="add-button">追加</button>
+function updateClock(): void {
+  if (!clock) return;
 
-    <ul id="todo-list"></ul>
-  `;
+  const now = new Date();
+
+  const hours = String(now.getHours()).padStart(2, "0");
+  const minutes = String(now.getMinutes()).padStart(2, "0");
+  const seconds = String(now.getSeconds()).padStart(2, "0");
+
+  clock.textContent = `${hours}:${minutes}:${seconds}`;
 }
 
-const input = document.querySelector<HTMLInputElement>("#todo-input");
-const button = document.querySelector<HTMLButtonElement>("#add-button");
-const list = document.querySelector<HTMLUListElement>("#todo-list");
-
-const todos: string[] = [];
-
-button?.addEventListener("click", () => {
-  const value = input?.value;
-
-  if (!value) {
-    return;
-  }
-
-  todos.push(value);
-
-  renderTodos();
-
-  input.value = "";
-});
-
-function renderTodos() {
-  if (!list) {
-    return;
-  }
-
-  list.innerHTML = "";
-
-  todos.forEach((todo) => {
-    const li = document.createElement("li");
-
-    li.textContent = todo;
-
-    list.appendChild(li);
-  });
-}
+updateClock();
+setInterval(updateClock, 1000);
