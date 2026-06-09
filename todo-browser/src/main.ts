@@ -16,3 +16,12 @@ function updateClock(): void {
 
 updateClock();
 setInterval(updateClock, 1000);
+
+const app = document.querySelector<HTMLDivElement>("#app");
+
+const loginButton = document.querySelector("#login");
+
+loginButton?.addEventListener("click", () => {
+  console.log("ログインボタンが押された");
+  window.location.href = "login.html";
+});

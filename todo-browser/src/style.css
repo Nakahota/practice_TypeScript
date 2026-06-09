@@ -28,3 +28,10 @@ body {
   color: #fff;
   cursor: pointer;
 }
+
+#loginScreen {
+    display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
