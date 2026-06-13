@@ -1,0 +1,37 @@
+body {
+  margin: 0;
+  background-color: #000;
+  color: #fff;
+  font-family: Arial, sans-serif;
+}
+
+#app {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#clock {
+  font-size: 100px;
+  font-weight: bold;
+}
+
+#login {
+  margin-top: 30px;
+  font-size: 24px;
+  padding: 12px 24px;
+  border: 1px solid #fff;
+  border-radius: 8px;
+  background-color: transparent;
+  color: #fff;
+  cursor: pointer;
+}
+
+#loginScreen {
+    display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
