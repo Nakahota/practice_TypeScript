@@ -1,13 +1,15 @@
 import { login as authLogin } from "../services/authService"
 
 export function useAuth() {
-  const login = (
+  const login = async (
     userId: string,
     password: string
   ) => {
     console.log("useAuth");
 
-    authLogin(userId, password);
+    const result = await authLogin(userId, password);
+
+    console.log(result)
   };
 
   return {
