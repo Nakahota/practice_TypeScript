@@ -26,12 +26,12 @@ app.post("/login", (req, res) => {
   });
 });
 
-app.listen(3000, () => {
-  console.log("Server Start")
-});
-
 app.get("/health", (_, res) => {
   res.json({
     status: "ok",
   });
+});
+
+app.listen(3000, () => {
+  console.log("Server Start")
 });
