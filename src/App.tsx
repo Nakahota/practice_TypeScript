@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
+import { Routes, Route } from "react-router-dom";
+
 import MainPage from "./pages/MainPage";
 import LoginPage from "./pages/LoginPage";
+import DashBoardPage from "./pages/DashBoardPage";
 
 function App() {
   const [time, setTime] = useState("");
-  const [isLoginPage, setIsLoginPage] = useState(false);
 
   useEffect(() => {
     const updateClock = () => {
@@ -24,15 +26,23 @@ function App() {
     return () => clearInterval(timer);
   }, []);
 
-  if (isLoginPage) {
-    return <LoginPage />;
-  }
-
   return (
-    <MainPage
-      time={time}
-      onLogin={() => setIsLoginPage(true)}
-    />
+    <Routes>
+      <Route
+        path="/"
+        element={<MainPage time={time} />}
+      />
+
+      <Route
+        path="/login"
+        element={<LoginPage />}
+      />
+
+      <Route
+        path="/dashboard"
+        element={<DashBoardPage />}
+      />
+    </Routes>
   );
 }
 

@@ -9,7 +9,7 @@ export function useAuth() {
 
     const result = await authLogin(userId, password);
 
-    console.log(result)
+    return result;
   };
 
   return {

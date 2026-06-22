@@ -1,16 +1,31 @@
 import { useState } from "react";
 import { useAuth } from "../hooks/useAuth";
+import { useNavigate } from "react-router-dom";
 
 console.log("LoginForm描画");
 
 function LoginForm() {
+
+  const navigate = useNavigate();
+
   const [userId, setUserId] = useState("");
   const [password, setPassword] = useState("");
   const { login } = useAuth();
 
-const handleLogin = () => {
-  login(userId, password);
-};
+  const handleLogin = async () => {
+    try {
+      const result = await login(
+        userId,
+        password
+      );
+
+      navigate("/dashboard");
+
+      alert("ログイン成功");
+    } catch (error) {
+      alert("ログイン失敗");
+    }
+  };
 
   return (
     <>
