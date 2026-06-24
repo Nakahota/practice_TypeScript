@@ -17,8 +17,6 @@ function DashBoardPage() {
 
       <p>ログインに成功しました！</p>
       <p>{userId}</p>
-      <p>{password}</p>
-
       
       <button onClick={handleLogout}>
         ログアウト

@@ -18,21 +18,34 @@ function LoginForm() {
 
   const [userId, setUserId] = useState("");
   const [password, setPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
   const { login } = useAuth();
 
   const handleLogin = async () => {
+
+    if (!userId) {
+      setErrorMessage(
+        "ユーザIDを入力してください。"
+      );
+      return;
+    }
+
+    if (!password) {
+      setErrorMessage(
+        "パスワードを入力してください。"
+      )
+    }
+
     try {
       await login(userId, password);
 
-      localStorage.setItem(
-        "userId",
-        userId
-      );
+      localStorage.setItem("userId", userId);
 
-      alert("ログイン成功");
       navigate("/dashboard");
     } catch (error) {
-      alert("ログイン失敗");
+      setErrorMessage(
+        "ユーザIDまたはパスワードが違います。"
+      )
     }
   };
 
