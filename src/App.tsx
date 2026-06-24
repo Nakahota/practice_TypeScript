@@ -4,6 +4,7 @@ import { Routes, Route } from "react-router-dom";
 import MainPage from "./pages/MainPage";
 import LoginPage from "./pages/LoginPage";
 import DashBoardPage from "./pages/DashBoardPage";
+import ProtectedRoute from "./features/auth/components/ProtectedRoute";
 
 function App() {
   const [time, setTime] = useState("");
@@ -38,10 +39,12 @@ function App() {
         element={<LoginPage />}
       />
 
-      <Route
-        path="/dashboard"
-        element={<DashBoardPage />}
-      />
+      <Route element={<ProtectedRoute />}>
+        <Route
+          path="/dashboard"
+          element={<DashBoardPage />}
+        />
+      </Route>
     </Routes>
   );
 }

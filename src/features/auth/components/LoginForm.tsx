@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useAuth } from "../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
 
@@ -8,20 +8,29 @@ function LoginForm() {
 
   const navigate = useNavigate();
 
+  useEffect(() => {
+    const userId = localStorage.getItem("userId");
+
+    if (userId) {
+      navigate("/dashboard");
+    }
+  }, [navigate]);
+
   const [userId, setUserId] = useState("");
   const [password, setPassword] = useState("");
   const { login } = useAuth();
 
   const handleLogin = async () => {
     try {
-      const result = await login(
-        userId,
-        password
+      await login(userId, password);
+
+      localStorage.setItem(
+        "userId",
+        userId
       );
 
-      navigate("/dashboard");
-
       alert("ログイン成功");
+      navigate("/dashboard");
     } catch (error) {
       alert("ログイン失敗");
     }
