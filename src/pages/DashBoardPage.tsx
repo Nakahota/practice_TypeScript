@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 function DashBoardPage() {
 
   const userId = localStorage.getItem("userId")
-  const password = localStorage.getItem("password")
   const navigate = useNavigate();
 
   const handleLogout = () => {

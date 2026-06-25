@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useAuth } from "../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
+import "./LoginForm.css";
 
 console.log("LoginForm描画");
 
@@ -18,22 +19,32 @@ function LoginForm() {
 
   const [userId, setUserId] = useState("");
   const [password, setPassword] = useState("");
-  const [errorMessage, setErrorMessage] = useState("");
+  const [userIdError, setUserIdError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
   const { login } = useAuth();
 
   const handleLogin = async () => {
+    setUserIdError("");
+    setPasswordError("");
+
+    let hasError = false;
 
     if (!userId) {
-      setErrorMessage(
+      setUserIdError(
         "ユーザIDを入力してください。"
       );
-      return;
+      hasError = true;
     }
 
     if (!password) {
-      setErrorMessage(
+      setPasswordError(
         "パスワードを入力してください。"
-      )
+      );
+      hasError = true;
+    }
+
+    if (hasError) {
+      return
     }
 
     try {
@@ -43,7 +54,7 @@ function LoginForm() {
 
       navigate("/dashboard");
     } catch (error) {
-      setErrorMessage(
+      setPasswordError(
         "ユーザIDまたはパスワードが違います。"
       )
     }
@@ -58,18 +69,36 @@ function LoginForm() {
           type="text"
           placeholder="ユーザー名"
           value={userId}
-          onChange={(e) => setUserId(e.target.value)}
+          onChange={(e) => {
+            setUserId(e.target.value);
+            setUserIdError("");
+          }}
         />
       </div>
+
+      {userIdError && (
+        <p className="error-message">
+          {userIdError}
+        </p>
+      )}
 
       <div>
         <input
           type="password"
           placeholder="パスワード"
           value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          onChange={(e) => {
+            setPassword(e.target.value);
+            setPasswordError("");
+          }}
         />
       </div>
+
+      {passwordError && (
+        <p className="error-message">
+          {passwordError}
+        </p>
+      )}
 
       <div>
         <button onClick={handleLogin}>
