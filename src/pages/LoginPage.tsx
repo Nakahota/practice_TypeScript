@@ -1,10 +1,7 @@
+import LoginForm from "../features/auth/components/LoginForm";
+
 function LoginPage() {
-  return (
-    <>
-      <h2>ログイン画面</h2>
-      <button>ログイン実行</button>
-    </>
-  );
+  return <LoginForm />;
 }
 
 export default LoginPage;
